@@ -7,6 +7,7 @@
                     <c:set var="loggedInUser" value="${sessionScope.loggedInUser}"/>
                     <div id="navbar">
                         <ul class="nav navbar-nav">
+                            <li><a href="#">Topics</a></li>
                             <c:choose>
                                 <c:when test="${loggedInUser != null && loggedInUser.role == 'ADMIN'}">
                                     <li class="dropdown">
@@ -14,12 +15,10 @@
                                            aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
                                         <ul class="dropdown-menu">
                                             <li class=""><a href="#">Categories</a></li>
-                                            <li><a href="#">Topics</a></li>
                                         </ul>
                                     </li>
                                 </c:when>
                                 <c:otherwise>
-                                    <li><a href="#">Topics</a></li>
                                     <li><a href="#">Categories</a></li>
                                 </c:otherwise>
                             </c:choose>

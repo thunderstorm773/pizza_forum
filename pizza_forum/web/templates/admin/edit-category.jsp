@@ -5,7 +5,7 @@
             <label>Name</label>
             <div class="form-group">
                 <input type="text" name="name" class="form-control"
-                       value="${category.name}" required/>
+                       value="${category.name}" placeholder="Enter new category name" required/>
             </div>
             <input type="submit" class="btn btn-warning" value="Edit Category"/>
         </form>

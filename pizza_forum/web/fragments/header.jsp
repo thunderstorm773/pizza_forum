@@ -14,13 +14,10 @@
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                            aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
                                         <ul class="dropdown-menu">
-                                            <li class=""><a href="#">Categories</a></li>
+                                            <li class=""><a href="${pageContext.request.contextPath}/categories/all">Categories</a></li>
                                         </ul>
                                     </li>
                                 </c:when>
-                                <c:otherwise>
-                                    <li><a href="#">Categories</a></li>
-                                </c:otherwise>
                             </c:choose>
                         </ul>
                         <ul class="signmenu nav navbar-nav">

@@ -1,6 +1,6 @@
 <main>
     <div class="container">
-        <jsp:include page="../fragments/errors.jsp"/>
+        <jsp:include page="../../fragments/errors.jsp"/>
         <form method="POST">
             <label>Username</label>
             <div class="form-group">

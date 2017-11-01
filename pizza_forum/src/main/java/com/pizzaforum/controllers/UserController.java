@@ -98,12 +98,12 @@ public class UserController {
             return "redirect:/forum/login";
         }
 
-        return "redirect:/forum/home";
+        return "redirect:/home/topics";
     }
 
     @GetMapping("/forum/logout")
     public String logout(HttpSession session) {
         session.invalidate();
-        return "redirect:/forum/home";
+        return "redirect:/home/topics";
     }
 }

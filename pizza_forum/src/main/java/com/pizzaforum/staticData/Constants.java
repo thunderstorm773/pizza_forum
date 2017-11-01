@@ -38,5 +38,18 @@ public class Constants {
     public static final String EDIT_CATEGORY_VIEW_VALUE = "/templates/admin/edit-category.jsp";
     public static final String DELETE_CATEGORY_TITLE_VALUE = "Delete category";
     public static final String DELETE_CATEGORY_VIEW_VALUE = "/templates/admin/delete-category.jsp";
-
+    public static final String ALL_TOPICS_TITLE_VALUE = "All topics";
+    public static final String ALL_TOPICS_VIEW_VALUE = "/templates/home/all-topics.jsp";
+    public static final String CREATE_TOPIC_TITLE_VALUE = "Create topic";
+    public static final String CREATE_TOPIC_VIEW_VALUE = "/templates/topic/create-topic.jsp";
+    public static final int TOPIC_TITLE_MIN_LENGTH = 3;
+    public static final int TOPIC_TITLE_MAX_LENGTH = 30;
+    public static final String TOPIC_TITLE_EMPTY_MESSAGE = "Title cannot be empty!";
+    public static final String TOPIC_CONTENT_EMPTY_MESSAGE = "Content cannot be empty!";
+    public static final String TOPIC_TITLE_REQUIRED_LENGTH_MESSAGE = "Title must be between 3 and 30 symbols length!";
+    public static final int TOPIC_CONTENT_MIN_LENGTH = 10;
+    public static final int TOPIC_CONTENT_MAX_LENGTH = 5000;
+    public static final String TOPIC_CONTENT_REQUIRED_LENGTH_MESSAGE = "Content must be between 10 and 5000 symbols length!";
+    public static final String TOPICS_KEY = "topics";
+    public static final int MAX_TOPICS_IN_HOME_PAGE = 10;
 }

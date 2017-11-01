@@ -11,4 +11,6 @@ public interface UserRepository {
     Long findUsersCount();
 
     User findByUsernameOrEmailAndPassword(String usernameOrEmail, String password);
+
+    User findByUsername(String username);
 }

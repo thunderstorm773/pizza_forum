@@ -1,6 +1,7 @@
 package com.pizzaforum.entities;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "categories")
@@ -9,6 +10,8 @@ public class Category {
     private Long id;
 
     private String name;
+
+    private Set<Topic> topics;
 
     public Category() {
     }
@@ -30,5 +33,15 @@ public class Category {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @OneToMany(mappedBy = "category", cascade = CascadeType.REMOVE,
+            fetch = FetchType.EAGER)
+    public Set<Topic> getTopics() {
+        return topics;
+    }
+
+    public void setTopics(Set<Topic> topics) {
+        this.topics = topics;
     }
 }

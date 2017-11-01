@@ -128,6 +128,4 @@ public class AdminController {
         this.categoryService.deleteById(categoryId);
         return "redirect:/categories/all";
     }
-
-
 }

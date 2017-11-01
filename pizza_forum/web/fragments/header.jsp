@@ -7,7 +7,7 @@
                     <c:set var="loggedInUser" value="${sessionScope.loggedInUser}"/>
                     <div id="navbar">
                         <ul class="nav navbar-nav">
-                            <li><a href="#">Topics</a></li>
+                            <li><a href="${pageContext.request.contextPath}/home/topics">Topics</a></li>
                             <c:choose>
                                 <c:when test="${loggedInUser != null && loggedInUser.role == 'ADMIN'}">
                                     <li class="dropdown">

@@ -52,4 +52,14 @@ public class UserRepositoryImpl implements UserRepository {
                 .orElse(null);
         return user;
     }
+
+    @Override
+    public User findByUsername(String username) {
+        Query query = this.entityManager
+                .createQuery("SELECT u FROM User AS u WHERE u.username = :username");
+        query.setParameter("username", username);
+        User user = (User) query.getResultList().stream()
+                .findFirst().orElse(null);
+        return user;
+    }
 }

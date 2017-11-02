@@ -1,14 +1,18 @@
 package com.pizzaforum.controllers;
 
+import com.pizzaforum.models.bindingModels.AddReply;
 import com.pizzaforum.models.bindingModels.AddTopic;
 import com.pizzaforum.models.viewModels.CategoryView;
 import com.pizzaforum.models.viewModels.RegisteredUserView;
+import com.pizzaforum.models.viewModels.TopicDetailsView;
 import com.pizzaforum.services.api.CategoryService;
+import com.pizzaforum.services.api.ReplyService;
 import com.pizzaforum.services.api.TopicService;
 import com.pizzaforum.staticData.Constants;
 import com.pizzaforum.utils.ValidationUtil;
 import mvcFramework.annotations.controller.Controller;
 import mvcFramework.annotations.parameters.ModelAttribute;
+import mvcFramework.annotations.parameters.PathVariable;
 import mvcFramework.annotations.request.GetMapping;
 import mvcFramework.annotations.request.PostMapping;
 import mvcFramework.model.Model;
@@ -26,11 +30,15 @@ public class TopicController {
 
     private TopicService topicService;
 
+    private ReplyService replyService;
+
     @Inject
     public TopicController(CategoryService categoryService,
-                           TopicService topicService) {
+                           TopicService topicService,
+                           ReplyService replyService) {
         this.categoryService = categoryService;
         this.topicService = topicService;
+        this.replyService = replyService;
     }
 
     @GetMapping("/topics/new")
@@ -61,5 +69,45 @@ public class TopicController {
         String username = registeredUser.getUsername();
         this.topicService.create(addTopic, username);
         return "redirect:/home/topics";
+    }
+
+    @GetMapping("/topics/details/{id}")
+    public String getTopicDetailsPage(@PathVariable("id") Long topicId,
+                                      Model model) {
+        TopicDetailsView topicDetailsView = this.topicService.findById(topicId);
+        if (topicDetailsView == null) {
+            return "redirect:/home/topics";
+        }
+
+        model.addAttribute(Constants.TOPIC_KEY, topicDetailsView);
+        model.addAttribute(Constants.TITLE_KEY, Constants.TOPIC_DETAILS_TITLE_VALUE);
+        model.addAttribute(Constants.VIEW_KEY, Constants.TOPIC_DETAILS_VIEW_VALUE);
+        return "base-layout";
+    }
+
+    @PostMapping("/topics/details/{id}")
+    public String addReply(@ModelAttribute AddReply addReply,
+                           @PathVariable("id") Long topicId,
+                           Model model,
+                           HttpSession session) {
+        TopicDetailsView topicDetailsView = this.topicService.findById(topicId);
+        if (topicDetailsView == null) {
+            return "redirect:/home/topics";
+        }
+
+        ValidationUtil<AddReply> validationUtil = new ValidationUtil<>(addReply);
+        List<String> errors = validationUtil.getInvalidParamsMessages();
+        if (!errors.isEmpty()) {
+            model.addAttribute(Constants.ERRORS_KEY, errors);
+            model.addAttribute(Constants.TOPIC_KEY, topicDetailsView);
+            model.addAttribute(Constants.TITLE_KEY, Constants.TOPIC_DETAILS_TITLE_VALUE);
+            model.addAttribute(Constants.VIEW_KEY, Constants.TOPIC_DETAILS_VIEW_VALUE);
+            return "base-layout";
+        }
+
+        RegisteredUserView registeredUserView = (RegisteredUserView) session.getAttribute(Constants.LOGGED_IN_USER_KEY);
+        String username = registeredUserView.getUsername();
+        this.replyService.create(addReply, username, topicId);
+        return "redirect:/topics/details/" + topicId;
     }
 }

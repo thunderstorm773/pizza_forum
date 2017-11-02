@@ -9,4 +9,6 @@ public interface TopicRepository {
     void create(Topic topic);
 
     List<Topic> findAll();
+
+    Topic findById(Long id);
 }

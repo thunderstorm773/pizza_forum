@@ -4,6 +4,7 @@ import com.pizzaforum.entities.Category;
 import com.pizzaforum.entities.Topic;
 import com.pizzaforum.entities.User;
 import com.pizzaforum.models.bindingModels.AddTopic;
+import com.pizzaforum.models.viewModels.TopicDetailsView;
 import com.pizzaforum.models.viewModels.TopicView;
 import com.pizzaforum.repositories.api.CategoryRepository;
 import com.pizzaforum.repositories.api.TopicRepository;
@@ -62,5 +63,17 @@ public class TopicServiceImpl implements TopicService {
         List<TopicView> topicViews = MapperUtil.getInstance()
                 .convertAll(topics, TopicView.class);
         return topicViews;
+    }
+
+    @Override
+    public TopicDetailsView findById(Long id) {
+        Topic topic = this.topicRepository.findById(id);
+        TopicDetailsView topicDetailsView = null;
+        if (topic != null) {
+            topicDetailsView = MapperUtil.getInstance().getModelMapper()
+                    .map(topic, TopicDetailsView.class);
+        }
+
+        return topicDetailsView;
     }
 }

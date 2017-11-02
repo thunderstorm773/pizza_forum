@@ -52,4 +52,11 @@ public class Constants {
     public static final String TOPIC_CONTENT_REQUIRED_LENGTH_MESSAGE = "Content must be between 10 and 5000 symbols length!";
     public static final String TOPICS_KEY = "topics";
     public static final int MAX_TOPICS_IN_HOME_PAGE = 10;
+    public static final String TOPIC_DETAILS_TITLE_VALUE = "Topic details";
+    public static final String TOPIC_DETAILS_VIEW_VALUE = "/templates/topic/details.jsp";
+    public static final String TOPIC_KEY = "topic";
+    public static final String REPLY_CONTENT_EMPTY_MESSAGE = "Content of reply cannot be empty!";
+    public static final String REPLY_CONTENT_REQUIRED_LENGTH_MESSAGE = "Content of reply must be at least 3 symbols length!";
+    public static final int REPLY_CONTENT_REQUIRED_LENGTH = 3;
+
 }

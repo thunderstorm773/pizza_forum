@@ -28,4 +28,9 @@ public class TopicRepositoryImpl implements TopicRepository{
         List<Topic> topics = (List<Topic>) query.getResultList();
         return topics;
     }
+
+    @Override
+    public Topic findById(Long id) {
+        return this.entityManager.find(Topic.class, id);
+    }
 }

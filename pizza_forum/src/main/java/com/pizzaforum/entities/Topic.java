@@ -2,6 +2,7 @@ package com.pizzaforum.entities;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "topics")
@@ -18,6 +19,8 @@ public class Topic {
     private Category category;
 
     private Date publishDate;
+
+    private Set<Reply> replies;
 
     public Topic() {
     }
@@ -77,5 +80,15 @@ public class Topic {
 
     public void setPublishDate(Date publishDate) {
         this.publishDate = publishDate;
+    }
+
+    @OneToMany(mappedBy = "topic", cascade = CascadeType.REMOVE,
+            fetch = FetchType.EAGER)
+    public Set<Reply> getReplies() {
+        return replies;
+    }
+
+    public void setReplies(Set<Reply> replies) {
+        this.replies = replies;
     }
 }

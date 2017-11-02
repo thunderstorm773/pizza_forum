@@ -10,7 +10,7 @@
         <c:forEach var="topic" items="${topics}">
             <div class="thumbnail">
                 <h4>
-                    <strong><a href="#">${topic.title}</a></strong>
+                    <strong><a href="${pageContext.request.contextPath}/topics/details/${topic.id}">${topic.title}</a></strong>
                     <small><a href="#">${topic.categoryName}</a></small>
                 </h4>
                 <p><a href="#">${topic.authorUsername}</a> | Replies: {count} | <fmt:formatDate value="${topic.publishDate}" pattern="d MMM yyyy"/></p>

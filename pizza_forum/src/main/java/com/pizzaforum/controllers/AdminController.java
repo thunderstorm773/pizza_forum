@@ -62,8 +62,8 @@ public class AdminController {
     public String getAllCategoriesPage(Model model) {
         List<CategoryView> categoryViews = this.categoryService.findAll();
         model.addAttribute(Constants.CATEGORIES_KEY, categoryViews);
-        model.addAttribute(Constants.TITLE_KEY, Constants.ALL_CATEGORIES_TITLE_VALUE);
-        model.addAttribute(Constants.VIEW_KEY, Constants.ALL_CATEGORIES_VIEW_VALUE);
+        model.addAttribute(Constants.TITLE_KEY, Constants.ALL_CATEGORIES_ADMIN_TITLE_VALUE);
+        model.addAttribute(Constants.VIEW_KEY, Constants.ALL_CATEGORIES_ADMIN_VIEW_VALUE);
         return "base-layout";
     }
 

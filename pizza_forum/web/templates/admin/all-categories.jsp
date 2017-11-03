@@ -14,7 +14,7 @@
             <tbody>
             <c:forEach var="category" items="${categories}">
                 <tr>
-                    <td><a href="#">${category.name}</a></td>
+                    <td><a href="${pageContext.request.contextPath}/home/categories/${category.id}/topics">${category.name}</a></td>
                     <td><a href="${pageContext.request.contextPath}/categories/edit/${category.id}"
                            class="btn btn-primary">Edit</a></td>
                     <td><a href="${pageContext.request.contextPath}/categories/delete/${category.id}"

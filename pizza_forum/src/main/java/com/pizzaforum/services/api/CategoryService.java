@@ -3,6 +3,7 @@ package com.pizzaforum.services.api;
 import com.pizzaforum.models.bindingModels.AddCategory;
 import com.pizzaforum.models.bindingModels.EditCategory;
 import com.pizzaforum.models.viewModels.CategoryView;
+import com.pizzaforum.models.viewModels.TopicView;
 
 import java.util.List;
 
@@ -19,4 +20,6 @@ public interface CategoryService {
     boolean edit(EditCategory editCategory);
 
     void deleteById(Long id);
+
+    List<TopicView> findAllTopicsForCategory(Long categoryId);
 }

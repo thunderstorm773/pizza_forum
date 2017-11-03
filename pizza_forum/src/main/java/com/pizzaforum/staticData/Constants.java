@@ -30,8 +30,8 @@ public class Constants {
     public static final String CREATE_CATEGORY_TITLE_VALUE = "Create category";
     public static final String CREATE_CATEGORY_VIEW_VALUE = "/templates/admin/create-category.jsp";
     public static final String CATEGORY_NAME_ALREADY_EXISTS_MESSAGE = "Category name already exists!";
-    public static final String ALL_CATEGORIES_TITLE_VALUE = "All categories";
-    public static final String ALL_CATEGORIES_VIEW_VALUE = "/templates/admin/all-categories.jsp";
+    public static final String ALL_CATEGORIES_ADMIN_TITLE_VALUE = "All categories";
+    public static final String ALL_CATEGORIES_ADMIN_VIEW_VALUE = "/templates/admin/all-categories.jsp";
     public static final String CATEGORIES_KEY = "categories";
     public static final String CATEGORY_KEY = "category";
     public static final String EDIT_CATEGORY_TITLE_VALUE = "Edit category";
@@ -58,5 +58,8 @@ public class Constants {
     public static final String REPLY_CONTENT_EMPTY_MESSAGE = "Content of reply cannot be empty!";
     public static final String REPLY_CONTENT_REQUIRED_LENGTH_MESSAGE = "Content of reply must be at least 3 symbols length!";
     public static final int REPLY_CONTENT_REQUIRED_LENGTH = 3;
-
+    public static final String ALL_CATEGORIES_HOME_TITLE_VALUE = "All categories";
+    public static final String ALL_CATEGORIES_HOME_VIEW_VALUE = "/templates/home/all-categories.jsp";
+    public static final String ALL_TOPICS_FOR_CATEGORY_TITLE_VALUE = "All topics for category";
+    public static final String ALL_TOPICS_FOR_CATEGORY_VIEW_VALUE = "/templates/home/all-topics-for-category.jsp";
 }

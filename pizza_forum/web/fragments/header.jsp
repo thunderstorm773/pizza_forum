@@ -8,6 +8,9 @@
                     <div id="navbar">
                         <ul class="nav navbar-nav">
                             <li><a href="${pageContext.request.contextPath}/home/topics">Topics</a></li>
+                            <c:if test="${loggedInUser != null}">
+                                <li><a href="${pageContext.request.contextPath}/home/categories">Categories</a></li>
+                            </c:if>
                             <c:choose>
                                 <c:when test="${loggedInUser != null && loggedInUser.role == 'ADMIN'}">
                                     <li class="dropdown">

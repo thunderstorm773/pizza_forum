@@ -1,16 +1,20 @@
 package com.pizzaforum.services.impl;
 
 import com.pizzaforum.entities.Category;
+import com.pizzaforum.entities.Topic;
 import com.pizzaforum.models.bindingModels.AddCategory;
 import com.pizzaforum.models.bindingModels.EditCategory;
 import com.pizzaforum.models.viewModels.CategoryView;
+import com.pizzaforum.models.viewModels.TopicView;
 import com.pizzaforum.repositories.api.CategoryRepository;
 import com.pizzaforum.services.api.CategoryService;
 import com.pizzaforum.utils.MapperUtil;
+import org.modelmapper.PropertyMap;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.List;
 
 @Stateless
@@ -80,5 +84,25 @@ public class CategoryServiceImpl implements CategoryService {
         }
 
         this.categoryRepository.deleteById(id);
+    }
+
+    @Override
+    public List<TopicView> findAllTopicsForCategory(Long categoryId) {
+        Category category = this.categoryRepository.findById(categoryId);
+        List<TopicView> topicViews = null;
+        if (category != null) {
+            List<Topic> topics = new ArrayList<>(category.getTopics());
+            PropertyMap<Topic, TopicView> propertyMap = new PropertyMap<Topic, TopicView>() {
+                @Override
+                protected void configure() {
+                    map().setRepliesCount(source.getReplies().size());
+                }
+            };
+
+            topicViews = MapperUtil.getInstance().convertAll(topics, Topic.class,
+                    TopicView.class, propertyMap);
+        }
+
+        return topicViews;
     }
 }

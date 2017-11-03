@@ -12,6 +12,7 @@ import com.pizzaforum.repositories.api.UserRepository;
 import com.pizzaforum.services.api.TopicService;
 import com.pizzaforum.staticData.Constants;
 import com.pizzaforum.utils.MapperUtil;
+import org.modelmapper.PropertyMap;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
@@ -60,8 +61,15 @@ public class TopicServiceImpl implements TopicService {
         List<Topic> topics = this.topicRepository.findAll()
                 .stream().sorted(dateComparator)
                 .limit(Constants.MAX_TOPICS_IN_HOME_PAGE).collect(Collectors.toList());
+        PropertyMap<Topic, TopicView> propertyMap = new PropertyMap<Topic, TopicView>() {
+            @Override
+            protected void configure() {
+                map().setRepliesCount(source.getReplies().size());
+            }
+        };
+
         List<TopicView> topicViews = MapperUtil.getInstance()
-                .convertAll(topics, TopicView.class);
+                .convertAll(topics, Topic.class, TopicView.class, propertyMap);
         return topicViews;
     }
 

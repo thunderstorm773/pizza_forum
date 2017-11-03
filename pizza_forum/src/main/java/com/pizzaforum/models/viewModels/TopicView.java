@@ -14,6 +14,8 @@ public class TopicView {
 
     private Date publishDate;
 
+    private int repliesCount;
+
     public TopicView() {
     }
 
@@ -55,5 +57,13 @@ public class TopicView {
 
     public void setPublishDate(Date publishDate) {
         this.publishDate = publishDate;
+    }
+
+    public int getRepliesCount() {
+        return repliesCount;
+    }
+
+    public void setRepliesCount(int repliesCount) {
+        this.repliesCount = repliesCount;
     }
 }

@@ -8,6 +8,15 @@
             <p><a href="#">${topic.authorUsername}</a> <fmt:formatDate value="${topic.publishDate}" pattern="d MMM yyyy"/></p>
             <p>${topic.content}</p>
         </div>
+        <c:forEach var="reply" items="${topic.replies}">
+            <div class="thumbnail reply">
+                <h5><strong><a href="#">${reply.authorUsername}</a></strong> <fmt:formatDate value="${reply.publishDate}" pattern="d MMM yyyy"/></h5>
+                <p>${reply.content}</p>
+                <div class="reply image">
+                    <img src="${reply.imageURL}" />
+                </div>
+            </div>
+        </c:forEach>
         <c:if test="${sessionScope.loggedInUser != null}">
             <div class="thumbnail reply">
                 <form method="POST">

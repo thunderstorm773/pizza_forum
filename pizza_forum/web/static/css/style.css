@@ -6,3 +6,12 @@ ul.signmenu {
 	width: 95%;
 	margin-left: 5%;
 }
+
+.reply.image {
+	margin-left: 0;
+}
+
+.reply img {
+	max-width: 350px;
+	max-height: 150px;
+}

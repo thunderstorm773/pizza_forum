@@ -11,4 +11,8 @@ public interface TopicRepository {
     List<Topic> findAll();
 
     Topic findById(Long id);
+
+    void deleteById(Long id);
+
+    void edit(Topic topic);
 }

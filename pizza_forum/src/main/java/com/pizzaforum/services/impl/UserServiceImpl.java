@@ -39,8 +39,8 @@ public class UserServiceImpl implements UserService {
     public boolean register(RegisterUser registerUser) {
         String username = registerUser.getUsername();
         String email = registerUser.getEmail();
-        User registeredUser = this.userRepository.findByUsernameAndEmail(username, email);
-        if (registeredUser != null) {
+        RegisteredUserView registeredUserView = this.findByUsernameAndEmail(username, email);
+        if (registeredUserView != null) {
             return false;
         }
 

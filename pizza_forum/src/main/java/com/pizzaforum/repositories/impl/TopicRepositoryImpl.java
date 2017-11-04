@@ -33,4 +33,15 @@ public class TopicRepositoryImpl implements TopicRepository{
     public Topic findById(Long id) {
         return this.entityManager.find(Topic.class, id);
     }
+
+    @Override
+    public void deleteById(Long id) {
+        Topic topic = this.entityManager.find(Topic.class, id);
+        this.entityManager.remove(topic);
+    }
+
+    @Override
+    public void edit(Topic topic) {
+        this.entityManager.merge(topic);
+    }
 }

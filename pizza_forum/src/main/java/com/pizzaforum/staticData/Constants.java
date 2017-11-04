@@ -41,7 +41,7 @@ public class Constants {
     public static final String ALL_TOPICS_TITLE_VALUE = "All topics";
     public static final String ALL_TOPICS_VIEW_VALUE = "/templates/home/all-topics.jsp";
     public static final String CREATE_TOPIC_TITLE_VALUE = "Create topic";
-    public static final String CREATE_TOPIC_VIEW_VALUE = "/templates/topic/create-topic.jsp";
+    public static final String CREATE_TOPIC_VIEW_VALUE = "/templates/topic/create.jsp";
     public static final int TOPIC_TITLE_MIN_LENGTH = 3;
     public static final int TOPIC_TITLE_MAX_LENGTH = 30;
     public static final String TOPIC_TITLE_EMPTY_MESSAGE = "Title cannot be empty!";
@@ -62,4 +62,8 @@ public class Constants {
     public static final String ALL_CATEGORIES_HOME_VIEW_VALUE = "/templates/home/all-categories.jsp";
     public static final String ALL_TOPICS_FOR_CATEGORY_TITLE_VALUE = "All topics for category";
     public static final String ALL_TOPICS_FOR_CATEGORY_VIEW_VALUE = "/templates/home/all-topics-for-category.jsp";
+    public static final String EDIT_TOPIC_TITLE_VALUE = "Edit topic";
+    public static final String EDIT_TOPIC_VIEW_VALUE = "/templates/topic/edit.jsp";
+    public static final String DELETE_TOPIC_TITLE_VALUE = "Delete topic";
+    public static final String DELETE_TOPIC_VIEW_VALUE = "/templates/topic/delete.jsp";
 }

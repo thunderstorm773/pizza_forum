@@ -78,8 +78,8 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public void deleteById(Long id) {
-        Category category = this.categoryRepository.findById(id);
-        if (category == null) {
+        CategoryView categoryView = this.findById(id);
+        if (categoryView == null) {
             return;
         }
 

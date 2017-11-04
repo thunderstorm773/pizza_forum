@@ -1,6 +1,8 @@
 package com.pizzaforum.services.api;
 
 import com.pizzaforum.models.bindingModels.AddTopic;
+import com.pizzaforum.models.bindingModels.EditTopic;
+import com.pizzaforum.models.viewModels.EditTopicView;
 import com.pizzaforum.models.viewModels.TopicDetailsView;
 import com.pizzaforum.models.viewModels.TopicView;
 
@@ -12,5 +14,11 @@ public interface TopicService {
 
     List<TopicView> findLatestTenTopics();
 
-    TopicDetailsView findById(Long id);
+    TopicDetailsView findTopicDetailsById(Long id);
+
+    EditTopicView findById(Long id);
+
+    void deleteById(Long id);
+
+    void edit(EditTopic editTopic);
 }

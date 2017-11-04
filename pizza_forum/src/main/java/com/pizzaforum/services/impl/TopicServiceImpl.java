@@ -4,6 +4,8 @@ import com.pizzaforum.entities.Category;
 import com.pizzaforum.entities.Topic;
 import com.pizzaforum.entities.User;
 import com.pizzaforum.models.bindingModels.AddTopic;
+import com.pizzaforum.models.bindingModels.EditTopic;
+import com.pizzaforum.models.viewModels.EditTopicView;
 import com.pizzaforum.models.viewModels.TopicDetailsView;
 import com.pizzaforum.models.viewModels.TopicView;
 import com.pizzaforum.repositories.api.CategoryRepository;
@@ -74,7 +76,7 @@ public class TopicServiceImpl implements TopicService {
     }
 
     @Override
-    public TopicDetailsView findById(Long id) {
+    public TopicDetailsView findTopicDetailsById(Long id) {
         Topic topic = this.topicRepository.findById(id);
         TopicDetailsView topicDetailsView = null;
         if (topic != null) {
@@ -83,5 +85,35 @@ public class TopicServiceImpl implements TopicService {
         }
 
         return topicDetailsView;
+    }
+
+    @Override
+    public EditTopicView findById(Long id) {
+        Topic topic = this.topicRepository.findById(id);
+        EditTopicView editTopicView = null;
+        if (topic != null) {
+            editTopicView = MapperUtil.getInstance().getModelMapper()
+                    .map(topic, EditTopicView.class);
+        }
+
+        return editTopicView;
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        EditTopicView editTopicView = this.findById(id);
+        if (editTopicView != null) {
+            this.topicRepository.deleteById(id);
+        }
+    }
+
+    @Override
+    public void edit(EditTopic editTopic) {
+        Topic topic = MapperUtil.getInstance().getModelMapper()
+                .map(editTopic, Topic.class);
+        Long categoryId = editTopic.getCategory();
+        Category category = this.categoryRepository.findById(categoryId);
+        topic.setCategory(category);
+        this.topicRepository.edit(topic);
     }
 }

@@ -3,10 +3,19 @@
 <main>
     <div class="container">
         <jsp:include page="../../fragments/errors.jsp"/>
+        <c:set var="loggedInUser" value="${sessionScope.loggedInUser}"/>
         <div class="thumbnail">
             <h4><strong><a href="#">${topic.title}</a></strong></h4>
             <p><a href="#">${topic.authorUsername}</a> <fmt:formatDate value="${topic.publishDate}" pattern="d MMM yyyy"/></p>
             <p>${topic.content}</p>
+            <c:if test="${loggedInUser != null && (loggedInUser.role == 'ADMIN' || loggedInUser.username == topic.authorUsername)}">
+                <div class="form-group">
+                    <div class="form-group">
+                        <a href="${pageContext.request.contextPath}/topics/edit/${topic.id}" class="btn btn-warning">Edit</a>
+                        <a href="${pageContext.request.contextPath}/topics/delete/${topic.id}" class="btn btn-danger">Delete</a>
+                    </div>
+                </div>
+            </c:if>
         </div>
         <c:forEach var="reply" items="${topic.replies}">
             <div class="thumbnail reply">
@@ -17,7 +26,7 @@
                 </div>
             </div>
         </c:forEach>
-        <c:if test="${sessionScope.loggedInUser != null}">
+        <c:if test="${loggedInUser != null}">
             <div class="thumbnail reply">
                 <form method="POST">
                     <div class="form-group">

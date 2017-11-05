@@ -4,6 +4,8 @@ import com.pizzaforum.enums.Role;
 
 public class RegisteredUserView {
 
+    private Long id;
+
     private String username;
 
     private String email;
@@ -11,6 +13,14 @@ public class RegisteredUserView {
     private Role role;
 
     public RegisteredUserView() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getUsername() {

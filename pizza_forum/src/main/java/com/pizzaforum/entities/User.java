@@ -3,6 +3,7 @@ package com.pizzaforum.entities;
 import com.pizzaforum.enums.Role;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -17,6 +18,8 @@ public class User {
     private String password;
 
     private Role role;
+
+    private Set<Topic> topics;
 
     public User() {
     }
@@ -66,5 +69,15 @@ public class User {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    @OneToMany(mappedBy = "author", cascade = CascadeType.REMOVE,
+            fetch = FetchType.EAGER)
+    public Set<Topic> getTopics() {
+        return topics;
+    }
+
+    public void setTopics(Set<Topic> topics) {
+        this.topics = topics;
     }
 }

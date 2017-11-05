@@ -13,4 +13,6 @@ public interface UserRepository {
     User findByUsernameOrEmailAndPassword(String usernameOrEmail, String password);
 
     User findByUsername(String username);
+
+    User findById(Long id);
 }

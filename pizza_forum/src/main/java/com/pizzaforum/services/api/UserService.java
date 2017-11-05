@@ -2,6 +2,7 @@ package com.pizzaforum.services.api;
 
 import com.pizzaforum.models.bindingModels.RegisterUser;
 import com.pizzaforum.models.viewModels.RegisteredUserView;
+import com.pizzaforum.models.viewModels.UserView;
 
 public interface UserService {
 
@@ -11,4 +12,6 @@ public interface UserService {
     boolean register(RegisterUser registerUser);
 
     RegisteredUserView findByUsernameOrEmailAndPassword(String usernameOrEmail, String password);
+
+    UserView findAllTopicsForUser(Long userId);
 }

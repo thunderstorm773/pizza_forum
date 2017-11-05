@@ -6,7 +6,7 @@
         <c:set var="loggedInUser" value="${sessionScope.loggedInUser}"/>
         <div class="thumbnail">
             <h4><strong><a href="#">${topic.title}</a></strong></h4>
-            <p><a href="#">${topic.authorUsername}</a> <fmt:formatDate value="${topic.publishDate}" pattern="d MMM yyyy"/></p>
+            <p><a href="${pageContext.request.contextPath}/forum/profile/${topic.authorId}">${topic.authorUsername}</a> <fmt:formatDate value="${topic.publishDate}" pattern="d MMM yyyy"/></p>
             <p>${topic.content}</p>
             <c:if test="${loggedInUser != null && (loggedInUser.role == 'ADMIN' || loggedInUser.username == topic.authorUsername)}">
                 <div class="form-group">

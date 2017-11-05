@@ -66,4 +66,7 @@ public class Constants {
     public static final String EDIT_TOPIC_VIEW_VALUE = "/templates/topic/edit.jsp";
     public static final String DELETE_TOPIC_TITLE_VALUE = "Delete topic";
     public static final String DELETE_TOPIC_VIEW_VALUE = "/templates/topic/delete.jsp";
+    public static final String PROFILE_TITLE_VALUE = "Profile";
+    public static final String PROFILE_VIEW_VALUE = "/templates/user/profile.jsp";
+    public static final String USER_KEY = "user";
 }

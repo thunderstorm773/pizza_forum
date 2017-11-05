@@ -3,11 +3,13 @@ package com.pizzaforum.controllers;
 import com.pizzaforum.models.bindingModels.LoginUser;
 import com.pizzaforum.models.bindingModels.RegisterUser;
 import com.pizzaforum.models.viewModels.RegisteredUserView;
+import com.pizzaforum.models.viewModels.UserView;
 import com.pizzaforum.services.api.UserService;
 import com.pizzaforum.staticData.Constants;
 import com.pizzaforum.utils.ValidationUtil;
 import mvcFramework.annotations.controller.Controller;
 import mvcFramework.annotations.parameters.ModelAttribute;
+import mvcFramework.annotations.parameters.PathVariable;
 import mvcFramework.annotations.request.GetMapping;
 import mvcFramework.annotations.request.PostMapping;
 import mvcFramework.model.Model;
@@ -105,5 +107,19 @@ public class UserController {
     public String logout(HttpSession session) {
         session.invalidate();
         return "redirect:/home/topics";
+    }
+
+    @GetMapping("/forum/profile/{id}")
+    public String getProfilePage(@PathVariable("id") Long userId,
+                                 Model model) {
+        UserView userView = this.userService.findAllTopicsForUser(userId);
+        if (userView == null) {
+            return "redirect:/home/topics";
+        }
+
+        model.addAttribute(Constants.USER_KEY, userView);
+        model.addAttribute(Constants.TITLE_KEY, Constants.PROFILE_TITLE_VALUE);
+        model.addAttribute(Constants.VIEW_KEY, Constants.PROFILE_VIEW_VALUE);
+        return "base-layout";
     }
 }

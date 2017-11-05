@@ -11,6 +11,8 @@ public class TopicDetailsView {
 
     private String authorUsername;
 
+    private Long authorId;
+
     private Date publishDate;
 
     private String content;
@@ -42,6 +44,14 @@ public class TopicDetailsView {
 
     public void setAuthorUsername(String authorUsername) {
         this.authorUsername = authorUsername;
+    }
+
+    public Long getAuthorId() {
+        return authorId;
+    }
+
+    public void setAuthorId(Long authorId) {
+        this.authorId = authorId;
     }
 
     public Date getPublishDate() {

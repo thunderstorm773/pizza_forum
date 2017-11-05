@@ -1,16 +1,22 @@
 package com.pizzaforum.services.impl;
 
+import com.pizzaforum.entities.Topic;
 import com.pizzaforum.entities.User;
 import com.pizzaforum.enums.Role;
 import com.pizzaforum.models.bindingModels.RegisterUser;
 import com.pizzaforum.models.viewModels.RegisteredUserView;
+import com.pizzaforum.models.viewModels.TopicView;
+import com.pizzaforum.models.viewModels.UserView;
 import com.pizzaforum.repositories.api.UserRepository;
 import com.pizzaforum.services.api.UserService;
 import com.pizzaforum.utils.MapperUtil;
+import org.modelmapper.PropertyMap;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.List;
 
 @Stateless
 @Local(UserService.class)
@@ -69,5 +75,29 @@ public class UserServiceImpl implements UserService {
         }
 
         return registeredUserView;
+    }
+
+    @Override
+    public UserView findAllTopicsForUser(Long userId) {
+        User user = this.userRepository.findById(userId);
+        UserView userView = null;
+        if (user != null) {
+            List<Topic> topics = new ArrayList<>(user.getTopics());
+            PropertyMap<Topic, TopicView> propertyMap = new PropertyMap<Topic, TopicView>() {
+                @Override
+                protected void configure() {
+                    map().setRepliesCount(source.getReplies().size());
+                }
+            };
+
+            List<TopicView> topicViews = MapperUtil.getInstance()
+                    .convertAll(topics, Topic.class, TopicView.class, propertyMap);
+            userView = new UserView();
+            String username = user.getUsername();
+            userView.setUsername(username);
+            userView.setTopics(topicViews);
+        }
+
+        return userView;
     }
 }

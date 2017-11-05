@@ -53,7 +53,7 @@ public class HomeController {
     }
 
     @GetMapping("/home/categories/{id}/topics")
-    public String getAllTopicsForCategory(@PathVariable("id") Long categoryId,
+    public String getAllTopicsForCategoryPage(@PathVariable("id") Long categoryId,
                                           Model model) {
         List<TopicView> topicViews = this.categoryService.findAllTopicsForCategory(categoryId);
         if (topicViews == null) {

@@ -62,4 +62,9 @@ public class UserRepositoryImpl implements UserRepository {
                 .findFirst().orElse(null);
         return user;
     }
+
+    @Override
+    public User findById(Long id) {
+        return this.entityManager.find(User.class, id);
+    }
 }

@@ -26,7 +26,7 @@
                         <ul class="signmenu nav navbar-nav">
                             <c:choose>
                                 <c:when test="${loggedInUser != null}">
-                                    <li><span class="navbar-text">Hello, <a href="#">${loggedInUser.username}</a></span></li>
+                                    <li><span class="navbar-text">Hello, <a href="${pageContext.request.contextPath}/forum/profile/${loggedInUser.id}">${loggedInUser.username}</a></span></li>
                                     <li><span class="navbar-text"><a href="${pageContext.request.contextPath}/forum/logout">Log out</a></span></li>
                                 </c:when>
                                 <c:otherwise>

@@ -15,4 +15,6 @@ public interface TopicRepository {
     void deleteById(Long id);
 
     void edit(Topic topic);
+
+    List<Topic> findLatestTenTopics();
 }

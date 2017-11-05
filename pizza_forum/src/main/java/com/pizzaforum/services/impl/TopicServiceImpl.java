@@ -12,17 +12,14 @@ import com.pizzaforum.repositories.api.CategoryRepository;
 import com.pizzaforum.repositories.api.TopicRepository;
 import com.pizzaforum.repositories.api.UserRepository;
 import com.pizzaforum.services.api.TopicService;
-import com.pizzaforum.staticData.Constants;
 import com.pizzaforum.utils.MapperUtil;
 import org.modelmapper.PropertyMap;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Stateless
 @Local(TopicService.class)
@@ -59,10 +56,7 @@ public class TopicServiceImpl implements TopicService {
 
     @Override
     public List<TopicView> findLatestTenTopics() {
-        Comparator<Topic> dateComparator = (t1, t2) -> t2.getPublishDate().compareTo(t1.getPublishDate());
-        List<Topic> topics = this.topicRepository.findAll()
-                .stream().sorted(dateComparator)
-                .limit(Constants.MAX_TOPICS_IN_HOME_PAGE).collect(Collectors.toList());
+        List<Topic> topics = this.topicRepository.findLatestTenTopics();
         PropertyMap<Topic, TopicView> propertyMap = new PropertyMap<Topic, TopicView>() {
             @Override
             protected void configure() {

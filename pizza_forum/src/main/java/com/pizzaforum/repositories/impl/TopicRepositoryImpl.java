@@ -2,6 +2,7 @@ package com.pizzaforum.repositories.impl;
 
 import com.pizzaforum.entities.Topic;
 import com.pizzaforum.repositories.api.TopicRepository;
+import com.pizzaforum.staticData.Constants;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
@@ -43,5 +44,14 @@ public class TopicRepositoryImpl implements TopicRepository{
     @Override
     public void edit(Topic topic) {
         this.entityManager.merge(topic);
+    }
+
+    @Override
+    public List<Topic> findLatestTenTopics() {
+        Query query = this.entityManager
+                .createQuery("SELECT t FROM Topic AS t ORDER BY t.publishDate DESC");
+        List<Topic> topics = (List<Topic>) query.setMaxResults(Constants.MAX_TOPICS_IN_HOME_PAGE)
+                .getResultList();
+        return topics;
     }
 }

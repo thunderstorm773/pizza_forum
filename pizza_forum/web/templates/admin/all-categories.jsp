@@ -2,7 +2,7 @@
 <main>
     <div class="container">
         <a href="${pageContext.request.contextPath}/categories/new" class="btn btn-success">New Category</a>
-        <table class="table table-striped">
+        <table class="table table-striped table-responsive-sm">
             <caption>Categories</caption>
             <thead>
             <tr>

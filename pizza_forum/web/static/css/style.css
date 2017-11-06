@@ -1,7 +1,11 @@
 ul.signmenu {
-	float: right;
 	margin-right: 50px;
 }
+
+.thumbnail {
+	font-weight: bold;
+}
+
 .reply {
 	width: 95%;
 	margin-left: 5%;

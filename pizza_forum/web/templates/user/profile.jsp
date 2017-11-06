@@ -3,7 +3,7 @@
 <main>
     <div class="container">
         <h1>${user.username}</h1>
-        <table class="table table-striped">
+        <table class="table table-striped table-responsive">
             <caption>Topics</caption>
             <thead>
             <tr>

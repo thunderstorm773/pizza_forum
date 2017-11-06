@@ -6,6 +6,7 @@
         <c:set var="loggedInUser" value="${sessionScope.loggedInUser}"/>
         <div class="thumbnail">
             <h4><strong><a href="#">${topic.title}</a></strong></h4>
+            <fmt:setLocale value="en_US" />
             <p><a href="${pageContext.request.contextPath}/forum/profile/${topic.authorId}">${topic.authorUsername}</a> <fmt:formatDate value="${topic.publishDate}" pattern="d MMM yyyy"/></p>
             <p>${topic.content}</p>
             <c:if test="${loggedInUser != null && (loggedInUser.role == 'ADMIN' || loggedInUser.username == topic.authorUsername)}">
@@ -19,7 +20,7 @@
         </div>
         <c:forEach var="reply" items="${topic.replies}">
             <div class="thumbnail reply">
-                <h5><strong><a href="#">${reply.authorUsername}</a></strong> <fmt:formatDate value="${reply.publishDate}" pattern="d MMM yyyy"/></h5>
+                <p><a href="#">${reply.authorUsername}</a> <fmt:formatDate value="${reply.publishDate}" pattern="d MMM yyyy"/></p>
                 <p>${reply.content}</p>
                 <div class="reply image">
                     <img src="${reply.imageURL}" />
@@ -27,19 +28,23 @@
             </div>
         </c:forEach>
         <c:if test="${loggedInUser != null}">
-            <div class="thumbnail reply">
-                <form method="POST">
-                    <div class="form-group">
-                        <label>Content</label>
-                        <textarea class="form-control" name="content"
-                                  placeholder="Enter your reply..." required></textarea>
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <div class="thumbnail reply">
+                        <form method="POST">
+                            <div class="form-group">
+                                <label>Content</label>
+                                <textarea class="form-control" name="content"
+                                          placeholder="Enter your reply..." required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Image URL</label>
+                                <input type="text" name="imageURL" class="form-control" placeholder="http://..."/>
+                            </div>
+                            <input type="submit" class="btn btn-primary" value="Reply"/>
+                        </form>
                     </div>
-                    <div class="form-group">
-                        <label>Image URL</label>
-                        <input type="text" name="imageURL" class="form-control" placeholder="http://..."/>
-                    </div>
-                    <input type="submit" class="btn btn-primary" value="Reply"/>
-                </form>
+                </div>
             </div>
         </c:if>
     </div>

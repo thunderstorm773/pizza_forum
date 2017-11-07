@@ -1,5 +1,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <main>
     <div class="container">
         <jsp:include page="../../fragments/errors.jsp"/>
@@ -18,15 +19,23 @@
                 </div>
             </c:if>
         </div>
-        <c:forEach var="reply" items="${topic.replies}">
-            <div class="thumbnail reply">
-                <p><a href="#">${reply.authorUsername}</a> <fmt:formatDate value="${reply.publishDate}" pattern="d MMM yyyy"/></p>
-                <p>${reply.content}</p>
-                <div class="reply image">
-                    <img src="${reply.imageURL}" />
-                </div>
-            </div>
-        </c:forEach>
+        <c:set var="replies" value="${topic.replies}"/>
+        <c:choose>
+            <c:when test="${fn:length(replies) > 0}">
+                <c:forEach var="reply" items="${replies}">
+                    <div class="thumbnail reply">
+                        <p><a href="#">${reply.authorUsername}</a> <fmt:formatDate value="${reply.publishDate}" pattern="d MMM yyyy"/></p>
+                        <p>${reply.content}</p>
+                        <div class="reply image">
+                            <img src="${reply.imageURL}" />
+                        </div>
+                    </div>
+                </c:forEach>
+            </c:when>
+            <c:otherwise>
+                <h2 class="text-center text-uppercase text-danger">No available replies</h2>
+            </c:otherwise>
+        </c:choose>
         <c:if test="${loggedInUser != null}">
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">

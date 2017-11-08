@@ -87,7 +87,7 @@ public class TopicController {
         return "base-layout";
     }
 
-    @PostMapping("/topics/details/{id}")
+    @PostMapping("/topics/details/add-reply/{id}")
     public String addReply(@ModelAttribute AddReply addReply,
                            @PathVariable("id") Long topicId,
                            Model model,

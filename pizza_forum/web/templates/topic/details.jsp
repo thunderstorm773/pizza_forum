@@ -24,7 +24,7 @@
             <c:when test="${fn:length(replies) > 0}">
                 <c:forEach var="reply" items="${replies}">
                     <div class="thumbnail reply">
-                        <p><a href="#">${reply.authorUsername}</a> <fmt:formatDate value="${reply.publishDate}" pattern="d MMM yyyy"/></p>
+                        <p><a href="${pageContext.request.contextPath}/forum/profile/${reply.authorId}">${reply.authorUsername}</a> <fmt:formatDate value="${reply.publishDate}" pattern="d MMM yyyy"/></p>
                         <p>${reply.content}</p>
                         <div class="reply image">
                             <img src="${reply.imageURL}" />
@@ -40,7 +40,7 @@
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
                     <div class="thumbnail reply">
-                        <form method="POST">
+                        <form method="POST" action="${pageContext.request.contextPath}/topics/details/add-reply/${topic.id}">
                             <div class="form-group">
                                 <label>Content</label>
                                 <textarea class="form-control" name="content"

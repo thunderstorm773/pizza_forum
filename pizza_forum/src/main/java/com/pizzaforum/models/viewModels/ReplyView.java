@@ -10,6 +10,8 @@ public class ReplyView {
 
     private String authorUsername;
 
+    private Long authorId;
+
     private String imageURL;
 
     private Date publishDate;
@@ -39,6 +41,14 @@ public class ReplyView {
 
     public void setAuthorUsername(String authorUsername) {
         this.authorUsername = authorUsername;
+    }
+
+    public Long getAuthorId() {
+        return authorId;
+    }
+
+    public void setAuthorId(Long authorId) {
+        this.authorId = authorId;
     }
 
     public String getImageURL() {
